@@ -31,10 +31,33 @@ A single-page static landing site for **rituu** — a community-based platform f
 ### Color palette
 `#C6783E` (orange) · `#E6BE66` (mustard) · `#FFFFFF` (white) · `#4C532C` (dark green) · `#000000` (black) · `#000180` (deep blue) · `#B7D58B` (light green)
 
+### Typography
+
+- **Display / headings / wordmark:** Snaga Uni Display
+- **Body / regular text:** Akkurat
+
+Both are commercial fonts; the user supplies the `.woff2` files. They live in `assets/fonts/` and are loaded via `@font-face` with `font-display: swap`. Until the files are dropped in, graceful fallback stacks render so the page is never blocked:
+
+```css
+--font-display: 'Snaga Uni Display', 'Outfit', 'Manrope', system-ui, sans-serif;
+--font-body:    'Akkurat', 'Inter', system-ui, -apple-system, sans-serif;
+```
+
+Type scale (mobile → desktop):
+- `h1` (hero tagline): 2.25rem → 3.5rem
+- `h2` (section): 1.75rem → 2.5rem
+- `body`: 1rem → 1.125rem
+- small / footer: 0.875rem
+
 ## 4. Layout
 
 ### Mobile (≤768px)
 Single-column, content max-width ~480px, horizontally centered. Blobs anchored to viewport corners, partially clipped off-screen. Mirrors the supplied WhatsApp mockup.
+
+### Vertical rhythm
+- Hero: `min-height: 100svh` on mobile, `min-height: 90vh` on desktop. Content vertically centered.
+- Inter-section spacing: `4rem` mobile, `6rem` desktop (applied as section `padding-block`).
+- Footer padding: `3rem` above, `2rem` below.
 
 ### Desktop (>768px)
 **Asymmetric split hero** — only the hero section uses the split. Lower sections stay center-aligned in a ~720px column.
@@ -49,9 +72,15 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 ## 5. Page sections (top to bottom)
 
 1. **Hero**
-   - Logo (`rituu_Logo_black.png`)
-   - Tagline: *"be present in your own life"*
+   - Logo (`rituu_Logo_black.png`) — sized at `width: clamp(180px, 32vw, 320px)`
+   - Tagline (`<h1>`): *"be present in your own life"*
    - Primary subscribe button → Tally URL placeholder
+
+   **Subscribe button visual:**
+   - Background `#000000`, text `#FFFFFF`, font `var(--font-body)`, weight 500, size 1rem
+   - Padding `0.875rem 2rem`, `border-radius: 999px` (pill), no border
+   - Hover: background `#4C532C` (dark green), `transition: background 0.2s ease`
+   - Focus-visible: 2px solid `#000180` outline, `outline-offset: 3px`
 2. **Mission**
    - *"We are building a community based platform for embodied moments of attentions, in short: rituals. This is your space to grow roots while you fly high. Master all transitions in your life with ease and feel connected to people all over the world."*
    - *"Become part of sharing practices that makes us all feel human again."*
@@ -104,12 +133,26 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 ├── styles.css
 ├── main.js
 ├── assets/                       (existing, unchanged)
+│   └── fonts/                    (user drops .woff2 files here)
+│       ├── SnagaUniDisplay.woff2 (TODO — user-supplied)
+│       └── Akkurat.woff2         (TODO — user-supplied)
+├── favicon.svg                   (1-character "r" mark in #000000)
 ├── docs/
 │   └── superpowers/
 │       └── specs/
 │           └── 2026-05-21-rituu-landing-page-design.md
 └── README.md                     (short deploy instructions)
 ```
+
+### Page metadata (in `<head>`)
+
+- `<title>rituu — be present in your own life</title>`
+- `<meta name="description" content="rituu is a community-based platform for embodied moments of attention. Master life's transitions through shared ritual practices.">`
+- Open Graph: `og:title`, `og:description`, `og:image` (= `assets/rituu_Logo_black.png`), `og:type=website`, `og:url` (placeholder)
+- Twitter card: `summary_large_image`
+- `<link rel="icon" type="image/svg+xml" href="favicon.svg">`
+- `<link rel="apple-touch-icon" href="assets/rituu_Logo_black.png">`
+- Viewport meta + UTF-8 charset
 
 ## 8. Accessibility
 
@@ -124,9 +167,10 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 
 ## 9. Performance
 
-- No external JS or CSS dependencies.
+- No external JS or CSS dependencies. No CDN font fetches.
 - Images already in repo; logo PNG used as-is. **SVG blobs are rendered as `<img src="...svg" class="blob" data-parallax="…">`** — keeps HTML small and the existing SVGs work as-is. CSS targets `.blob` for sizing, positioning, opacity transitions, and the parallax transform via the `--parallax-y` CSS variable.
-- Total JS ≈ 60 lines, CSS ≈ 250 lines.
+- Fonts: `font-display: swap` so text never blocks render; fallback stack matches metrics closely.
+- Total JS ≈ 60 lines, CSS ≈ 280 lines.
 
 ## 10. Deployment
 
@@ -138,6 +182,8 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 
 - **Tally URL** — user to provide later. Subscribe buttons render with `href="#"` and an inline `<!-- TODO: Tally URL -->` comment. Easy to swap with one find/replace.
 - **Footer socials** — placeholder comment in HTML, no icons in v1.
+- **Font files** — user supplies `SnagaUniDisplay.woff2` and `Akkurat.woff2` in `assets/fonts/`. Until then, fallback stacks render.
+- **OG image** — uses logo PNG for v1; can swap for a dedicated 1200×630 social card later.
 
 ## 12. Out of scope (YAGNI)
 
