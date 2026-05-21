@@ -1,4 +1,81 @@
+/* ----- @font-face: user-supplied .woff2 files in assets/fonts/ ----- */
+@font-face {
+  font-family: 'Snaga Uni Display';
+  src: url('assets/fonts/SnagaUniDisplay.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Akkurat';
+  src: url('assets/fonts/Akkurat.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* ----- Design tokens ----- */
+:root {
+  /* brand */
+  --color-white:       #FFFFFF;
+  --color-black:       #000000;
+  --color-orange:      #C6783E;
+  --color-mustard:     #E6BE66;
+  --color-green-dark:  #4C532C;
+  --color-green-light: #B7D58B;
+  --color-blue-deep:   #000180;
+
+  /* type */
+  --font-display: 'Snaga Uni Display', 'Outfit', 'Manrope', system-ui, sans-serif;
+  --font-body:    'Akkurat', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* fluid type scale */
+  --fs-h1:    clamp(2.25rem, 6vw, 3.5rem);
+  --fs-h2:    clamp(1.75rem, 4vw, 2.5rem);
+  --fs-body:  clamp(1rem, 1.5vw, 1.125rem);
+  --fs-small: 0.875rem;
+
+  /* spacing */
+  --space-section: 4rem;          /* mobile */
+  --space-section-lg: 6rem;       /* desktop */
+  --content-max: 720px;
+}
+
+/* ----- Reset ----- */
 *, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; }
-body { background: #FFFFFF; color: #000000; font-family: system-ui, sans-serif; }
+body {
+  background: var(--color-white);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ----- Typography ----- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+p  { margin: 0 0 1rem; }
+
+/* ----- Layout helpers ----- */
+.container {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+section {
+  padding-block: var(--space-section);
+  position: relative;
+  overflow: hidden; /* clip blobs that bleed beyond section */
+}
+@media (min-width: 768px) {
+  section { padding-block: var(--space-section-lg); }
+}
