@@ -73,7 +73,7 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 
 1. **Hero**
    - Logo (`rituu_Logo_black.png`) — sized at `width: clamp(180px, 32vw, 320px)`
-   - Tagline (`<h1>`): *"be present in your own life"*
+   - Tagline (`<h1>`): *"your digital sanctuary"*
    - Primary subscribe button → Tally URL placeholder
 
    **Subscribe button visual:**
@@ -82,6 +82,7 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
    - Hover: background `#4C532C` (dark green), `transition: background 0.2s ease`
    - Focus-visible: 2px solid `#000180` outline, `outline-offset: 3px`
 2. **Mission**
+   - Section heading (`<h2>`): *"be present in your own life"*
    - *"We are building a community based platform for embodied moments of attentions, in short: rituals. This is your space to grow roots while you fly high. Master all transitions in your life with ease and feel connected to people all over the world."*
    - *"Become part of sharing practices that makes us all feel human again."*
 3. **Subscribe block** — repeated CTA with short prompt *"Subscribe now"*. Same Tally placeholder URL.
@@ -146,8 +147,8 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 
 ### Page metadata (in `<head>`)
 
-- `<title>rituu — be present in your own life</title>`
-- `<meta name="description" content="rituu is a community-based platform for embodied moments of attention. Master life's transitions through shared ritual practices.">`
+- `<title>rituu — your digital sanctuary</title>`
+- `<meta name="description" content="rituu is a community-based platform for embodied moments of attention. Be present in your own life and master its transitions through shared ritual practices.">`
 - Open Graph: `og:title`, `og:description`, `og:image` (= `assets/rituu_Logo_black.png`), `og:type=website`, `og:url` (placeholder)
 - Twitter card: `summary_large_image`
 - `<link rel="icon" type="image/svg+xml" href="favicon.svg">`
