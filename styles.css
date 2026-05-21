@@ -1,0 +1,4 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #FFFFFF; color: #000000; font-family: system-ui, sans-serif; }
+img { max-width: 100%; display: block; }
