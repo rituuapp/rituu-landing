@@ -13,22 +13,24 @@
     return;
   }
 
-  // --- Sections: reveal on scroll, with per-child stagger ---
-  const sectionObserver = new IntersectionObserver((entries) => {
+  // --- Per-element reveal observer ---
+  // Each .reveal element below the hero animates when IT enters the
+  // viewport — not when its parent section does. Avoids the bug where
+  // a tall section (e.g. Playground with 4 stacked cards on mobile)
+  // would fire all reveals at once the moment the section top peeked
+  // into view, leaving nothing to animate by the time the user
+  // actually scrolled to the cards.
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const reveals = entry.target.querySelectorAll('.reveal');
-      reveals.forEach((el, i) => {
-        if (!el.style.getPropertyValue('--reveal-delay')) {
-          el.style.setProperty('--reveal-delay', `${i * 0.1}s`);
-        }
-        el.classList.add('is-visible');
-      });
-      sectionObserver.unobserve(entry.target);
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
 
-  document.querySelectorAll('main .section, .footer').forEach(s => sectionObserver.observe(s));
+  document.querySelectorAll('main .reveal, .footer .reveal').forEach(el => {
+    revealObserver.observe(el);
+  });
 
   // --- Parallax for blobs ---
   const blobs = Array.from(document.querySelectorAll('.blob[data-parallax]'))
