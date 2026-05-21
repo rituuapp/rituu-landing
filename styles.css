@@ -79,3 +79,112 @@ section {
 @media (min-width: 768px) {
   section { padding-block: var(--space-section-lg); }
 }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero__inner {
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+}
+.hero__content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.hero__logo {
+  width: clamp(180px, 32vw, 320px);
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+.hero__tagline {
+  margin-bottom: 2rem;
+}
+.hero__blobs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Mobile blob placement — corners, partially clipped */
+.blob--hero-1 { /* orange */
+  position: absolute;
+  width: 60vw; max-width: 320px;
+  top: -10vw; right: -15vw;
+  opacity: 0.85;
+}
+.blob--hero-2 { /* light green */
+  position: absolute;
+  width: 70vw; max-width: 380px;
+  top: -20vw; left: -25vw;
+  opacity: 0.85;
+}
+.blob--hero-3 { /* deep blue */
+  position: absolute;
+  width: 75vw; max-width: 400px;
+  bottom: -20vw; right: -25vw;
+  opacity: 0.95;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn--primary {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+.btn--primary:hover { background: var(--color-green-dark); }
+.btn:focus-visible {
+  outline: 2px solid var(--color-blue-deep);
+  outline-offset: 3px;
+}
+
+/* Desktop split layout */
+@media (min-width: 768px) {
+  .hero { min-height: 90vh; }
+  .hero__inner {
+    grid-template-columns: 45% 55%;
+    align-items: center;
+    gap: 0;
+  }
+  .hero__content {
+    text-align: left;
+    padding-right: 2rem;
+  }
+  .hero__logo { margin-inline: 0; }
+  .hero__blobs {
+    position: relative;
+    inset: auto;
+    height: 70vh;
+  }
+  /* Reposition the 3 blobs as a collage on the right half */
+  .blob--hero-1 { /* orange — top right */
+    width: 45%; max-width: none;
+    top: 0; right: 5%; left: auto; bottom: auto;
+  }
+  .blob--hero-2 { /* light green — middle left of collage */
+    width: 55%; max-width: none;
+    top: 20%; left: -5%; right: auto; bottom: auto;
+  }
+  .blob--hero-3 { /* deep blue — bottom right */
+    width: 50%; max-width: none;
+    bottom: 0; right: 0; top: auto; left: auto;
+  }
+}
