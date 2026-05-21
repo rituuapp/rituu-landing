@@ -1,13 +1,9 @@
-/* ----- @font-face: user-supplied .woff2 files in assets/fonts/ ----- */
-@font-face {
-  font-family: 'Snaga Uni Display';
-  src: url('assets/fonts/SnagaUniDisplay.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-}
+/* ----- Fonts -----
+   Display: Unbounded (Google Fonts, free) — loaded via <link> in index.html.
+   Body:    Akkurat — user-supplied .woff in assets/fonts/, falls back to Inter. */
 @font-face {
   font-family: 'Akkurat';
-  src: url('assets/fonts/Akkurat.woff2') format('woff2');
+  src: url('assets/fonts/Akkurat.woff') format('woff');
   font-weight: 100 900;
   font-display: swap;
 }
@@ -24,7 +20,7 @@
   --color-blue-deep:   #000180;
 
   /* type */
-  --font-display: 'Snaga Uni Display', 'Outfit', 'Manrope', system-ui, sans-serif;
+  --font-display: 'Unbounded', 'Outfit', 'Manrope', system-ui, sans-serif;
   --font-body:    'Akkurat', 'Inter', system-ui, -apple-system, sans-serif;
 
   /* fluid type scale */
