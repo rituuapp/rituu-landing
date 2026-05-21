@@ -37,7 +37,10 @@
 
 /* ----- Reset ----- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* iOS Safari needs this on html, not just body */
+}
 html, body { margin: 0; padding: 0; }
 body {
   background: var(--color-white);
@@ -47,6 +50,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden; /* contain blob bleed without clipping section overflow */
+  position: relative; /* establish containing block so off-screen blobs don't expand body width */
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
