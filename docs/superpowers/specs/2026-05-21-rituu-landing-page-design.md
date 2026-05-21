@@ -40,8 +40,8 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 **Asymmetric split hero** — only the hero section uses the split. Lower sections stay center-aligned in a ~720px column.
 
 - Hero left ~45%: logo, tagline, subscribe CTA, stacked vertically with left-alignment
-- Hero right ~55%: blob collage (2–3 blobs arranged organically, overlapping)
-- Sections below hero: ~720px max-width column, centered, with single blob accents at the left or right edge of each section (alternating sides).
+- Hero right ~55%: blob collage of exactly **3 blobs** — orange (`#C6783E`), light green (`#B7D58B`), deep blue (`#000180`) — arranged with overlap.
+- Sections below hero: ~720px max-width column, centered, with single blob accents at the left or right edge of each section (alternating sides). Suggested per-section blob usage: Mission = dark green (`#4C532C`), Community Guidelines = orange, Playground = light green, Body Wisdom = deep blue.
 
 ### Single media query breakpoint
 `@media (min-width: 768px)` — used for the hero-split and font-size adjustments only.
@@ -63,11 +63,11 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 5. **Playground & 4 Steps**
    - Intro paragraph: *"rituu is your playground to discover and create rituals that help you master life through all seasons. We consciously ebb and flow together by sharing meaningful ritual practices. We grow together. And we hope that you feel safe with us."*
    - Sub-heading: *"Within rituu every ritual has four easy steps:"*
-   - Four cards, side-by-side on desktop, stacked on mobile:
-     - **Arrive** (tinted with `#B7D58B` light green)
-     - **Engage** (tinted with `#E6BE66` mustard)
-     - **Express** (tinted with `#C6783E` orange)
-     - **Integrate** (tinted with `#4C532C` dark green, white text)
+   - Four cards, side-by-side on desktop, stacked on mobile. Each card has its own background tint; text color is chosen for WCAG AA contrast on that tint:
+     - **Arrive** — background `#B7D58B` (light green), text `#000000`
+     - **Engage** — background `#E6BE66` (mustard), text `#000000`
+     - **Express** — background `#C6783E` (orange), text `#FFFFFF`
+     - **Integrate** — background `#4C532C` (dark green), text `#FFFFFF`
 6. **Body Wisdom**
    - *"We focus on Breath, Touch, Gestures, Movements, Postures, Voice and Intention. It's not meditation. It's the wisdom your body holds."*
    - *"You're in full control. Define your intention and available time and dive in."*
@@ -87,7 +87,10 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 - Stagger inside a section: each child animates 0.1s after the previous.
 
 ### Parallax
-- A single `scroll` event listener (throttled with `requestAnimationFrame`) reads `window.scrollY` and sets a CSS variable `--parallax-y` on each `.blob` element to `scrollY * factor` where `factor` is 0.3–0.6 depending on the blob (varied for depth feel).
+- A single `scroll` event listener (throttled with `requestAnimationFrame`) reads `window.scrollY` and sets a CSS variable `--parallax-y` on each `.blob` element to `scrollY * factor`.
+- Per-blob factors via `data-parallax="<factor>"` attribute, read once on init:
+  - Hero blobs: `0.30`, `0.45`, `0.55`
+  - Section blobs: `0.35` (Mission), `0.50` (Guidelines), `0.40` (Playground), `0.55` (Body Wisdom)
 - Blobs use `transform: translate3d(0, var(--parallax-y), 0)` for GPU acceleration.
 
 ### Reduced motion
@@ -115,13 +118,14 @@ Single-column, content max-width ~480px, horizontally centered. Blobs anchored t
 - Decorative blobs use `aria-hidden="true"` and empty `alt`.
 - Heading hierarchy: `<h1>` once (hero), `<h2>` per section.
 - All interactive elements (subscribe button/link) have visible focus states.
-- Text colors: `#000000` and `#4C532C` on white — both pass WCAG AA Large and Normal.
+- Body text on white background uses `#000000` or `#4C532C` — both pass WCAG AA.
+- 4-step card text colors (per §5.5) are chosen per card background for WCAG AA contrast.
 - `prefers-reduced-motion` honored as described above.
 
 ## 9. Performance
 
 - No external JS or CSS dependencies.
-- Images already in repo; logo PNG used as-is. SVG blobs inlined via `<img src="...svg">` or as inline `<svg>` (decision deferred to implementation — inline lets us style with CSS, `<img>` keeps HTML small; default to `<img>` unless inline styling is needed).
+- Images already in repo; logo PNG used as-is. **SVG blobs are rendered as `<img src="...svg" class="blob" data-parallax="…">`** — keeps HTML small and the existing SVGs work as-is. CSS targets `.blob` for sizing, positioning, opacity transitions, and the parallax transform via the `--parallax-y` CSS variable.
 - Total JS ≈ 60 lines, CSS ≈ 250 lines.
 
 ## 10. Deployment
