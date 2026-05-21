@@ -85,7 +85,8 @@ section {
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  /* No overflow clipping — body has overflow-x: hidden,
+     and we want hero blobs to parallax smoothly past the hero edge. */
 }
 .hero__inner {
   width: 100%;
@@ -302,15 +303,20 @@ section {
 }
 
 /* ===== Reveal animations =====
-   Non-blob elements fade up (opacity + translateY).
-   Blobs fade in opacity-only so parallax can own the transform. */
+   Non-blob elements fade up (opacity + translateY) with a transform
+   transition. Blobs fade in opacity-only and DO NOT transition the
+   transform — otherwise scroll-driven parallax updates would each
+   ease over 0.6s and feel laggy. */
 .reveal {
   opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
   transition-delay: var(--reveal-delay, 0s);
 }
 .reveal:not(.blob) {
   transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.blob {
+  transition: opacity 0.6s ease;
 }
 .reveal.is-visible {
   opacity: 1;
