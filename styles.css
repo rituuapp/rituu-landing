@@ -306,17 +306,21 @@ section {
    Non-blob elements fade up (opacity + translateY) with a transform
    transition. Blobs fade in opacity-only and DO NOT transition the
    transform — otherwise scroll-driven parallax updates would each
-   ease over 0.6s and feel laggy. */
+   ease over 0.6s and feel laggy.
+
+   The transition-delay longhand MUST follow the transition shorthand
+   within the same rule (the shorthand otherwise resets delay to 0). */
 .reveal {
   opacity: 0;
-  transition-delay: var(--reveal-delay, 0s);
 }
 .reveal:not(.blob) {
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0s);
 }
 .reveal.blob {
   transition: opacity 0.6s ease;
+  transition-delay: var(--reveal-delay, 0s);
 }
 .reveal.is-visible {
   opacity: 1;
