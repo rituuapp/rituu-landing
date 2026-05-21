@@ -46,6 +46,7 @@ body {
   font-size: var(--fs-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* contain blob bleed without clipping section overflow */
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
@@ -70,7 +71,9 @@ p  { margin: 0 0 1rem; }
 section {
   padding-block: var(--space-section);
   position: relative;
-  overflow: hidden; /* clip blobs that bleed beyond section */
+  /* No overflow clipping here — let parallaxing blobs extend past
+     the section's box. body has overflow-x: hidden to absorb
+     anything that sticks off the viewport edges. */
 }
 @media (min-width: 768px) {
   section { padding-block: var(--space-section-lg); }
