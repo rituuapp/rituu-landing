@@ -29,4 +29,24 @@
   }, { threshold: 0.15 });
 
   document.querySelectorAll('main .section, .footer').forEach(s => sectionObserver.observe(s));
+
+  // --- Parallax for blobs ---
+  const blobs = Array.from(document.querySelectorAll('.blob[data-parallax]'))
+    .map(el => ({ el, factor: parseFloat(el.dataset.parallax) || 0 }));
+
+  let ticking = false;
+  const updateParallax = () => {
+    const y = window.scrollY;
+    blobs.forEach(({ el, factor }) => {
+      el.style.setProperty('--parallax-y', `${y * factor * -1}px`);
+    });
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
 })();

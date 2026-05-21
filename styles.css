@@ -284,25 +284,45 @@ section {
   .step__name { font-size: 1.5rem; }
 }
 
-/* ===== Reveal animations ===== */
+/* ===== Reveal animations =====
+   Non-blob elements fade up (opacity + translateY).
+   Blobs fade in opacity-only so parallax can own the transform. */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
   transition-delay: var(--reveal-delay, 0s);
 }
+.reveal:not(.blob) {
+  transform: translateY(20px);
+}
 .reveal.is-visible {
   opacity: 1;
+}
+.reveal.is-visible:not(.blob) {
   transform: translateY(0);
+}
+
+/* ===== Parallax (blobs only) ===== */
+.blob {
+  --parallax-y: 0px;
+  transform: translate3d(0, var(--parallax-y), 0);
+  will-change: transform;
 }
 
 /* Reduced motion — show everything immediately, no transitions */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .reveal.is-visible {
+  .reveal.is-visible,
+  .reveal:not(.blob),
+  .reveal.is-visible:not(.blob) {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .blob {
+    --parallax-y: 0px !important;
+    transform: none;
+    will-change: auto;
   }
   html { scroll-behavior: auto; }
 }
