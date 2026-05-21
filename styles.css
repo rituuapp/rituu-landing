@@ -134,7 +134,7 @@ section {
 .blob--hero-2 { /* light green */
   position: absolute;
   width: 70vw; max-width: 380px;
-  top: -20vw; left: -25vw;
+  top: -5vw; left: -25vw;
   opacity: 0.85;
 }
 .blob--hero-3 { /* deep blue */
