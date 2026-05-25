@@ -26,7 +26,7 @@
       entry.target.classList.add('is-visible');
       revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0.15 });
 
   document.querySelectorAll('main .reveal, .footer .reveal').forEach(el => {
     revealObserver.observe(el);
