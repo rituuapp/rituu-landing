@@ -234,6 +234,7 @@ section {
 .blob--guidelines  { top: 5%;   right: -15vw; }
 .blob--playground  { top: 5%;   left: -15vw; }
 .blob--body        { top: 10%;  right: -15vw; }
+.blob--connect     { top: 10%;  left: -15vw; }
 
 .section .container { position: relative; z-index: 1; }
 
@@ -367,6 +368,16 @@ section {
   }
   html { scroll-behavior: auto; }
 }
+
+/* Connect */
+.section--connect { text-align: center; }
+.section--connect a {
+  color: var(--color-orange);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s ease;
+}
+.section--connect a:hover { color: var(--color-green-dark); }
 
 /* Footer */
 .footer {
