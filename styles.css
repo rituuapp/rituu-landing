@@ -245,6 +245,16 @@ section {
 /* Subscribe block */
 .section--subscribe { text-align: center; }
 .subscribe__title { margin-bottom: 1.5rem; }
+.subscribe__form {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: left;
+}
+.subscribe__form iframe {
+  width: 100%;
+  border: none;
+  display: block;
+}
 
 /* Community Guidelines */
 .guidelines { text-align: center; }
