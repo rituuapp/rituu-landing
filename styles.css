@@ -33,6 +33,14 @@
   --space-section: 4rem;          /* mobile */
   --space-section-lg: 6rem;       /* desktop */
   --content-max: 720px;
+
+  /* Soft white halo to keep text legible where it overlaps the blob
+     SVGs. White works over BOTH light and dark blobs, and is invisible
+     over the white page background. A tight layer for separation plus
+     softer spread so it reads as a gentle glow, not a hard outline. */
+  --text-halo: 0 0 2px var(--color-white),
+               0 0 6px var(--color-white),
+               0 0 12px var(--color-white);
 }
 
 /* ----- Reset ----- */
@@ -114,9 +122,6 @@ section {
   letter-spacing: 0.01em;
   margin: -100px 0 2.5rem;
 }
-.hero .btn--primary {
-  margin-top: 80px;
-}
 .hero__blobs {
   position: absolute;
   inset: 0;
@@ -187,9 +192,6 @@ section {
     font-family: var(--font-display);
     font-size: var(--fs-h1);
     margin: 0 0 2rem;
-  }
-  .hero .btn--primary {
-    margin-top: 0;
   }
   .hero__blobs {
     position: relative;
@@ -275,17 +277,154 @@ section {
   z-index: 0;
   opacity: 0.75;
 }
+.blob--cta         { top: -6%;  left: -12vw; }
 .blob--mission     { top: 10%;  left: -15vw; }
 .blob--guidelines  { top: 5%;   right: -15vw; }
 .blob--playground  { top: 5%;   left: -15vw; }
-.blob--body        { top: 10%;  right: -15vw; }
 .blob--connect     { top: 10%;  left: -15vw; }
 
 .section .container { position: relative; z-index: 1; }
 
+/* Text legibility over blobs — white halo on copy that sits on the white
+   page (hero tagline + section headings/paragraphs). Links inside
+   paragraphs inherit it. Cards are excluded: they have solid colored
+   backgrounds where a halo around white text would look fuzzy. */
+.hero__tagline,
+.section :is(h2, h3, p) {
+  text-shadow: var(--text-halo);
+}
+.card :is(h2, h3, p) { text-shadow: none; }
+
 /* Mission */
 .section--mission p {
   font-size: 1.0625rem;
+}
+
+/* Early CTA — clean, centered conversion block right after the hero */
+.section--cta { text-align: center; }
+.cta { max-width: 640px; }
+.cta h2 { margin-bottom: 0.75rem; }
+.cta__sub {
+  font-size: 1.0625rem;
+  max-width: 32ch;
+  margin: 0 auto 2rem;
+}
+.cta__note {
+  font-size: var(--fs-small);
+  color: var(--color-green-dark);
+  margin: 1.25rem 0 0;
+}
+
+/* "Life is weird" — a dark breath/pause moment that interrupts the
+   white scroll. The dark band itself is the "interruption". */
+.section--weird {
+  background: var(--color-green-dark);
+  color: var(--color-white);
+  text-align: center;
+  /* Sit above neighbouring sections' blobs (z-index:0) so none parallax
+     into this clean dark band. */
+  z-index: 1;
+}
+/* Dark background — the white text halo would only fuzz light text here. */
+.section--weird :is(h2, h3, p) { text-shadow: none; }
+.weird { max-width: 600px; }
+.weird h2 {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  margin-bottom: 1rem;
+}
+.weird__lead {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  max-width: 28ch;
+  margin: 0 auto 2.5rem;
+}
+/* The autopilot loop — muted, stacked, fading in one-by-one (the stagger
+   is intentional here: it reinforces the relentless rhythm). */
+.weird__loop {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 auto 2.75rem;
+}
+.weird__loop span { display: block; }
+/* The turn: rituu breaks the pattern — full white, preceded by a short
+   accent line (the literal "small interruption"). */
+.weird__turn {
+  position: relative;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 34ch;
+  margin: 0 auto 1.5rem;
+  padding-top: 2.5rem;
+}
+.weird__turn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-green-light);
+}
+.weird__close {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Community / presence — a centred statement section. Builds to the
+   "Less performance / More presence" closer as the visual payoff. */
+.section--community {
+  text-align: center;
+  background: var(--color-mustard);
+  /* Sit above neighbouring blobs so none parallax into this clean band. */
+  z-index: 1;
+}
+/* Solid background — the white text halo would only fuzz the text here. */
+.section--community :is(h2, h3, p) { text-shadow: none; }
+.community { max-width: 620px; }
+.community__neg {
+  color: rgba(0, 0, 0, 0.55);
+  margin-bottom: 1.5rem;
+}
+.community__lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  line-height: 1.25;
+  margin: 0 0 1.25rem;
+}
+.community__lead em {
+  font-style: italic;
+  color: var(--color-green-dark);
+}
+.community__when {
+  font-size: 1.0625rem;
+  color: rgba(0, 0, 0, 0.6);
+  max-width: 36ch;
+  margin: 0 auto 1.75rem;
+}
+.community__share {
+  max-width: 38ch;
+  margin: 0 auto;
+}
+.community__punch {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  line-height: 1.15;
+  margin-top: 2.75rem;
+}
+.community__less {
+  display: block;
+  color: rgba(0, 0, 0, 0.4);   /* de-emphasised, but still legible on mustard */
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+.community__more {
+  display: block;
+  color: var(--color-green-dark);
 }
 
 /* Subscribe block */
@@ -328,51 +467,131 @@ section {
   color: var(--color-green-dark);
 }
 
-/* Steps */
-.steps__intro {
-  margin-top: 2rem;
-  font-weight: 500;
-}
-.steps {
+/* ===== "What is rituu" cards =====
+   Horizontal scroll carousel. Mobile: snap + pagination dots (JS).
+   Desktop: pure-CSS scroll — drag the scrollbar or use a trackpad,
+   no JS involved. */
+.cards {
   list-style: none;
   padding: 0;
   margin: 1.5rem 0 0;
   display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 85%;          /* each card ~85% wide so the next peeks in */
   gap: 1rem;
-  grid-template-columns: 1fr;
+  overflow-x: auto;
+  overflow-y: hidden;              /* MUST be explicit: with overflow-x:auto,
+                                      a `visible` overflow-y computes to `auto`,
+                                      adding a phantom vertical scroll that also
+                                      hijacks horizontal trackpad gestures. */
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;           /* Firefox — hidden on mobile (dots instead) */
+  cursor: grab;                    /* draggable via JS (drag-to-scroll) */
+  /* bleed to the container edges so cards can sit flush with the inset */
+  margin-inline: -1.5rem;
+  padding-inline: 1.5rem;
 }
-.step {
-  padding: 1.5rem 1.25rem;
+/* Hide via zero-size (NOT display:none — toggling display:none→block
+   leaves a visible-but-undraggable scrollbar in WebKit/Blink). */
+.cards::-webkit-scrollbar { width: 0; height: 0; }
+.cards.is-dragging { cursor: grabbing; }
+.cards.is-dragging .card { user-select: none; }
+
+.card {
+  scroll-snap-align: start;
+  padding: 1.75rem 1.5rem;
   border-radius: 16px;
-  font-family: var(--font-display);
   display: flex;
-  align-items: baseline;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px white solid;
 }
-.step__num {
+.card__num {
+  font-family: var(--font-display);
   font-size: 1rem;
   opacity: 0.7;
   font-variant-numeric: tabular-nums;
+  margin-bottom: 0.25rem;
 }
-.step__name {
-  font-size: 1.75rem;
+.card__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.15;
   letter-spacing: -0.01em;
+  margin: 0 0 0.25rem;
 }
-.step--arrive    { background: var(--color-green-light); color: var(--color-black); }
-.step--engage    { background: var(--color-mustard);     color: var(--color-black); }
-.step--express   { background: var(--color-orange);      color: var(--color-white); }
-.step--integrate { background: var(--color-green-dark);  color: var(--color-white); }
+.card__lead {
+  font-weight: 500;
+  margin: 0;
+}
+.card__body {
+  font-size: 1rem;
+  margin: 0;
+}
+.card__aside {
+  font-style: italic;
+  opacity: 0.85;
+  margin: 0;
+}
+.card--1 { background: var(--color-green-light); color: var(--color-black); }
+.card--2 { background: var(--color-mustard);     color: var(--color-black); }
+.card--3 { background: var(--color-orange);      color: var(--color-white); }
+.card--4 { background: var(--color-green-dark);  color: var(--color-white); }
 
-@media (min-width: 768px) {
-  .steps {
-    grid-template-columns: repeat(4, 1fr);
+/* Pagination dots (mobile only) */
+.cards__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+.cards__dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-black);
+  opacity: 0.2;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.cards__dot.is-active {
+  opacity: 0.8;
+  transform: scale(1.25);
+}
+.cards__dot:focus-visible {
+  outline: 2px solid var(--color-blue-deep);
+  outline-offset: 3px;
+}
+
+/* From small-tablet up, fix the card width so the carousel shows two
+   full cards plus a peek of the third (signals there's more to scroll).
+   Disable CSS scroll-snap on desktop: re-enabling it after a mouse drag
+   makes the browser instantly jump to the nearest snap point (a visible
+   "flick") and fights the JS smooth settle. On desktop the settle in
+   main.js glides to the nearest card instead — no snap, no flick. */
+@media (min-width: 600px) {
+  .cards {
+    grid-auto-columns: 300px;
+    scroll-snap-type: none;
+    /* Show a slim scrollbar on desktop so it can be dragged left/right
+       (mouse) in addition to trackpad scrolling. */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.28) transparent;
   }
-  .step {
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 160px;
+  .cards::-webkit-scrollbar { height: 10px; }
+  .cards::-webkit-scrollbar-track { background: transparent; }
+  .cards::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 999px;
   }
-  .step__name { font-size: 1.5rem; }
+  .cards::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.38); }
+  /* Dots are a mobile affordance only — on desktop the peeking third
+     card + the scrollbar signal there's more. */
+  .cards__dots { display: none; }
 }
 
 /* ===== Reveal animations =====

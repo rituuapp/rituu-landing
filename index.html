@@ -55,8 +55,7 @@
     <div class="hero__inner container">
       <div class="hero__content">
         <img class="hero__logo reveal" style="--reveal-delay:0.2s" src="assets/rituu_logo_black_tr.png" alt="rituu" width="320" height="320">
-        <h1 class="hero__tagline reveal" style="--reveal-delay:0.4s">your digital sanctuary</h1>
-        <a class="btn btn--primary reveal" style="--reveal-delay:0.6s" href="#subscribe" aria-label="Subscribe">Join</a>
+        <h1 class="hero__tagline reveal" style="--reveal-delay:0.4s">be present in your own life</h1>
       </div>
       <div class="hero__blobs" aria-hidden="true">
         <img class="blob blob--hero-1 reveal" style="--reveal-delay:0.4s" src="assets/rituu_logoideation_form_2.svg" alt="" data-parallax="0.30">
@@ -67,6 +66,32 @@
   </header>
 
   <main>
+    <section class="section section--cta" id="early-cta" aria-labelledby="early-cta-h">
+      <img class="blob blob--side blob--cta reveal" src="assets/rituu_logoideation_form_1.svg" alt="" aria-hidden="true" data-parallax="0.30">
+      <div class="container cta">
+        <h2 id="early-cta-h" class="reveal">Four Steps to reconnect with yourself</h2>
+        <p class="cta__sub reveal">Rituals for movement, intention, presence and shared human moments</p>
+        <a class="btn btn--primary reveal" href="#subscribe">Be the first to join</a>
+        <p class="cta__note reveal">No endless content. No pressure to perform.</p>
+      </div>
+    </section>
+
+    <section class="section section--weird" id="weird" aria-labelledby="weird-h">
+      <div class="container weird">
+        <h2 id="weird-h" class="reveal">Life is weird.</h2>
+        <p class="weird__lead reveal">We are constantly connected ... and yet deeply disconnected from ourselves.</p>
+        <div class="weird__loop" role="presentation">
+          <span class="reveal" style="--reveal-delay:0s">Scrolling.</span>
+          <span class="reveal" style="--reveal-delay:0.12s">Working.</span>
+          <span class="reveal" style="--reveal-delay:0.24s">Consuming.</span>
+          <span class="reveal" style="--reveal-delay:0.36s">Responding.</span>
+          <span class="reveal" style="--reveal-delay:0.48s">Repeating.</span>
+        </div>
+        <p class="weird__turn reveal">rituu creates small interruptions to the autopilot through embodied rituals designed for real life.</p>
+        <p class="weird__close reveal">A few intentional minutes.<br>A different feeling afterwards.</p>
+      </div>
+    </section>
+
     <section class="section section--mission" id="mission" aria-labelledby="mission-h">
       <img class="blob blob--side blob--mission reveal" src="assets/rituu_logoideation_form_3.svg" alt="" aria-hidden="true" data-parallax="0.35">
       <div class="container">
@@ -76,15 +101,6 @@
       </div>
     </section>
 
-    <section class="section section--subscribe" id="subscribe" aria-labelledby="subscribe-h">
-      <div class="container subscribe">
-        <h2 id="subscribe-h" class="subscribe__title reveal">Subscribe now</h2>
-        <div class="subscribe__form reveal">
-          <iframe data-tally-src="https://tally.so/embed/vGdzqg?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="243" frameborder="0" marginheight="0" marginwidth="0" title="Join rituu"></iframe>
-        </div>
-        <p class="subscribe__notice reveal">We'll use your email to share updates and occasionally invite you to shape rituu with us. Always optional. <a href="privacy.html">Privacy</a>.</p>
-      </div>
-    </section>
 
     <section class="section section--guidelines" id="guidelines" aria-labelledby="guidelines-h">
       <img class="blob blob--side blob--guidelines reveal" src="assets/rituu_logoideation_form_2.svg" alt="" aria-hidden="true" data-parallax="0.50">
@@ -98,26 +114,61 @@
     <section class="section section--playground" id="playground" aria-labelledby="playground-h">
       <img class="blob blob--side blob--playground reveal" src="assets/rituu_logoideation_form_1.svg" alt="" aria-hidden="true" data-parallax="0.40">
       <div class="container">
-        <h2 id="playground-h" class="visually-hidden">A ritual in four steps</h2>
-        <p class="reveal">rituu is your playground to discover and create rituals that help you master life through all seasons. We consciously ebb and flow together by sharing meaningful ritual practices. We grow together. And we hope that you feel safe with us.</p>
-        <p class="steps__intro reveal">Within rituu every ritual has four easy steps:</p>
-        <ol class="steps">
-          <li class="step step--arrive reveal"><span class="step__num">01</span><span class="step__name">Arrive</span></li>
-          <li class="step step--engage reveal"><span class="step__num">02</span><span class="step__name">Engage</span></li>
-          <li class="step step--express reveal"><span class="step__num">03</span><span class="step__name">Express</span></li>
-          <li class="step step--integrate reveal"><span class="step__num">04</span><span class="step__name">Integrate</span></li>
+        <h2 id="playground-h" class="reveal">What is rituu</h2>
+        <ol class="cards reveal" id="rituu-cards">
+          <li class="card card--1">
+            <h3 class="card__title">4 simple steps</h3>
+            <p class="card__lead">Arrive – Engage – Express – Integrate</p>
+            <p class="card__body">Every ritual is clear, structured and easy to follow.</p>
+          </li>
+          <li class="card card--2">
+            <h3 class="card__title">2–5 minute moments</h3>
+            <p class="card__body">Designed for real life, not perfect routines.</p>
+          </li>
+          <li class="card card--3">
+            <h3 class="card__title">Body-first experiences</h3>
+            <p class="card__body">Pockets of time centered around movement, breath, gestures, touch, voice and intention.</p>
+            <p class="card__aside">Not self-optimization.<br>Not endless meditation.</p>
+            <p class="card__body">Just simple ways to reconnect with yourself through the body.</p>
+          </li>
+          <li class="card card--4">
+            <h3 class="card__title">Shared by real people</h3>
+            <p class="card__body">Discover rituals created by others — or share your own.</p>
+          </li>
         </ol>
+        <div class="cards__dots" role="group" aria-label="Card navigation">
+          <button type="button" class="cards__dot is-active" aria-label="Show card 1" data-index="0"></button>
+          <button type="button" class="cards__dot" aria-label="Show card 2" data-index="1"></button>
+          <button type="button" class="cards__dot" aria-label="Show card 3" data-index="2"></button>
+          <button type="button" class="cards__dot" aria-label="Show card 4" data-index="3"></button>
+        </div>
       </div>
     </section>
 
-    <section class="section section--body" id="body-wisdom" aria-labelledby="body-h">
-      <img class="blob blob--side blob--body reveal" src="assets/rituu_logoideation_form_4.svg" alt="" aria-hidden="true" data-parallax="0.55">
-      <div class="container">
-        <h2 id="body-h" class="visually-hidden">Body wisdom</h2>
-        <p class="reveal">We focus on Breath, Touch, Gestures, Movements, Postures, Voice and Intention. It's not meditation. It's the wisdom your body holds.</p>
-        <p class="reveal">You're in full control. Define your intention and available time and dive in.</p>
+    <section class="section section--community" id="community" aria-labelledby="community-h">
+      <div class="container community">
+        <h2 id="community-h" class="visually-hidden">Presence, not performance</h2>
+        <p class="community__neg reveal">This isn't about consuming more. And it's not about experts.</p>
+        <p class="community__lead reveal">It's about creating small moments of intention — <em>together.</em></p>
+        <p class="community__when reveal">Before work, instead of doomscrolling, after a stressful conversation or simply in your coffee break.</p>
+        <p class="community__share reveal">People can share rituals, discover practices from others, and build a meaningful kind of digital space.</p>
+        <p class="community__punch reveal">
+          <span class="community__less">Less performance.</span>
+          <span class="community__more">More presence.</span>
+        </p>
       </div>
     </section>
+
+    <section class="section section--subscribe" id="subscribe" aria-labelledby="subscribe-h">
+      <div class="container subscribe">
+        <h2 id="subscribe-h" class="subscribe__title reveal">Be the first to join</h2>
+        <div class="subscribe__form reveal">
+          <iframe data-tally-src="https://tally.so/embed/vGdzqg?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="243" frameborder="0" marginheight="0" marginwidth="0" title="Join rituu"></iframe>
+        </div>
+        <p class="subscribe__notice reveal">We'll use your email to share updates and occasionally invite you to shape rituu with us. Always optional. <a href="privacy.html">Privacy</a>.</p>
+      </div>
+    </section>
+
 
     <section class="section section--connect" id="connect" aria-labelledby="connect-h">
       <img class="blob blob--side blob--connect reveal" src="assets/rituu_logoideation_form_2.svg" alt="" aria-hidden="true" data-parallax="0.45">
