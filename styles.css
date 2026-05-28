@@ -282,7 +282,7 @@ section {
   opacity: 0.75;
 }
 .blob--cta         { top: -6%;  left: -12vw; }
-.blob--mission     { top: 10%;  left: -15vw; }
+.blob--mission     { top: 10%;  right: -15vw; }
 .blob--guidelines  { top: 5%;   right: -15vw; }
 .blob--playground  { top: 5%;   left: -15vw; }
 .blob--connect     { top: 10%;  left: -15vw; }
