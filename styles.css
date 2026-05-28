@@ -438,7 +438,12 @@ section {
 
 /* Subscribe block */
 .section--subscribe { text-align: center; }
-.subscribe__title { margin-bottom: 1.5rem; }
+.subscribe__title { margin-bottom: 1rem; }
+.subscribe__lead {
+  font-size: 1.0625rem;
+  max-width: 44ch;
+  margin: 0 auto 1.75rem;
+}
 .subscribe__form {
   max-width: 520px;
   margin: 0 auto;
