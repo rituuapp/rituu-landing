@@ -112,15 +112,17 @@ section {
 }
 .hero__logo {
   width: clamp(260px, 72vw, 460px);
+  max-width: 250px;
   height: auto;
-  margin: 0 auto 0.25rem;
+
+  margin: 5rem auto 1.25rem;
 }
 .hero__tagline {
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.01em;
-  margin: -100px 0 2.5rem;
+  margin: 0 0 2.5rem;
 }
 .hero__blobs {
   position: absolute;
@@ -186,7 +188,9 @@ section {
   }
   .hero__logo {
     width: clamp(220px, 30vw, 360px);
-    margin: 0 0 1rem;
+    margin: 0 0 8rem;
+    max-width: 220px;
+
   }
   .hero__tagline {
     font-family: var(--font-display);
